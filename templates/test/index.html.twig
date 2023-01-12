@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ressource index{% endblock %}
+{% block title %}Social index{% endblock %}
 
 {% block body %}
-    <h1>Ressource index</h1>
+    <h1>Social index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Url_image</th>
-                <th>Url</th>
+                <th>Social_url</th>
+                <th>Url_icone</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for ressource in ressources %}
+        {% for social in socials %}
             <tr>
-                <td>{{ ressource.id }}</td>
-                <td>{{ ressource.name }}</td>
-                <td>{{ ressource.urlImage }}</td>
-                <td>{{ ressource.url }}</td>
+                <td>{{ social.id }}</td>
+                <td>{{ social.name }}</td>
+                <td>{{ social.socialUrl }}</td>
+                <td>{{ social.urlIcone }}</td>
                 <td>
-                    <a href="{{ path('app_test_show', {'id': ressource.id}) }}">show</a>
-                    <a href="{{ path('app_test_edit', {'id': ressource.id}) }}">edit</a>
+                    <a href="{{ path('app_test_show', {'id': social.id}) }}">show</a>
+                    <a href="{{ path('app_test_edit', {'id': social.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

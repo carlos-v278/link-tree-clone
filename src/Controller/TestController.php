@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Ressource;
-use App\Form\RessourceType;
-use App\Repository\RessourceRepository;
+use App\Entity\Social;
+use App\Form\SocialType;
+use App\Repository\SocialRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,63 +14,64 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestController extends AbstractController
 {
     #[Route('/', name: 'app_test_index', methods: ['GET'])]
-    public function index(RessourceRepository $ressourceRepository): Response
+    public function index(SocialRepository $socialRepository): Response
     {
         return $this->render('test/index.html.twig', [
-            'ressources' => $ressourceRepository->findAll(),
+            'socials' => $socialRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_test_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RessourceRepository $ressourceRepository): Response
+    public function new(Request $request, SocialRepository $socialRepository): Response
     {
-        $ressource = new Ressource();
-        $form = $this->createForm(RessourceType::class, $ressource);
-        $form->handleRequest($request);
-
+        $social = new Social();
+        $form = $this->createForm(SocialType::class, $social);
+        $user = $this->getUser();
+        dump($user);
+        $form->get('user')->setData($user);
         if ($form->isSubmitted() && $form->isValid()) {
-            $ressourceRepository->save($ressource, true);
+            $socialRepository->save($social, true);
 
             return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('test/new.html.twig', [
-            'ressource' => $ressource,
+            'social' => $social,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_test_show', methods: ['GET'])]
-    public function show(Ressource $ressource): Response
+    public function show(Social $social): Response
     {
         return $this->render('test/show.html.twig', [
-            'ressource' => $ressource,
+            'social' => $social,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_test_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Ressource $ressource, RessourceRepository $ressourceRepository): Response
+    public function edit(Request $request, Social $social, SocialRepository $socialRepository): Response
     {
-        $form = $this->createForm(RessourceType::class, $ressource);
+        $form = $this->createForm(SocialType::class, $social);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $ressourceRepository->save($ressource, true);
+            $socialRepository->save($social, true);
 
             return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('test/edit.html.twig', [
-            'ressource' => $ressource,
+            'social' => $social,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_test_delete', methods: ['POST'])]
-    public function delete(Request $request, Ressource $ressource, RessourceRepository $ressourceRepository): Response
+    public function delete(Request $request, Social $social, SocialRepository $socialRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ressource->getId(), $request->request->get('_token'))) {
-            $ressourceRepository->remove($ressource, true);
+        if ($this->isCsrfTokenValid('delete' . $social->getId(), $request->request->get('_token'))) {
+            $socialRepository->remove($social, true);
         }
 
         return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
