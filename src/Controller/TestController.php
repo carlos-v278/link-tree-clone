@@ -26,12 +26,10 @@ class TestController extends AbstractController
     {
         $social = new Social();
         $form = $this->createForm(SocialType::class, $social);
-        $user = $this->getUser();
-        dump($user);
-        $form->get('user')->setData($user);
+        $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $socialRepository->save($social, true);
-
             return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
         }
 

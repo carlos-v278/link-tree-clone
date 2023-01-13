@@ -43,15 +43,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ressource::class, orphanRemoval: true)]
     private Collection $ressources;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Template $template = null;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Social::class, orphanRemoval: true)]
     private Collection $socials;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Promotion::class, orphanRemoval: true)]
     private Collection $promotions;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Template $template = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+
 
     public function __construct()
     {
@@ -215,17 +219,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTemplate(): ?Template
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(Template $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Social>
@@ -289,5 +282,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->firstname . ' ' . $this->lastname . ' ' . $this->email . ' ' . $this->profile_image;;
+    }
+
+    public function getTemplate(): ?Template
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(Template $template): self
+    {
+        // set the owning side of the relation if necessary
+        if ($template->getUser() !== $this) {
+            $template->setUser($this);
+        }
+
+        $this->template = $template;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

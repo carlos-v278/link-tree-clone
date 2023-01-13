@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\SocialRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 
 #[ORM\Entity(repositoryClass: SocialRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Social
 {
     #[ORM\Id]
@@ -76,6 +78,12 @@ class Social
     {
         $this->user = $user;
 
+        return $this;
+    }
+
+    public function setCreatedUser(Security $userSecurity): self
+    {
+        $this->user = $userSecurity->getUser();
         return $this;
     }
 }

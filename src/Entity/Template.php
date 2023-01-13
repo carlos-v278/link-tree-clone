@@ -44,9 +44,6 @@ class Template
     private ?string $section_3_color_txt_card = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_3_bg_promo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $section_4_bg_color = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -61,8 +58,11 @@ class Template
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $section_5_icon_color = null;
 
-    #[ORM\OneToOne(mappedBy: 'template', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'template', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+
 
 
 
@@ -191,17 +191,7 @@ class Template
         return $this;
     }
 
-    public function getSection3BgPromo(): ?string
-    {
-        return $this->section_3_bg_promo;
-    }
 
-    public function setSection3BgPromo(?string $section_3_bg_promo): self
-    {
-        $this->section_3_bg_promo = $section_3_bg_promo;
-
-        return $this;
-    }
 
     public function getSection4BgColor(): ?string
     {
@@ -270,11 +260,6 @@ class Template
 
     public function setUser(User $user): self
     {
-        // set the owning side of the relation if necessary
-        if ($user->getTemplate() !== $this) {
-            $user->setTemplate($this);
-        }
-
         $this->user = $user;
 
         return $this;

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+<h2>social</h2>
+<div class="social_container">
+    {% for social in user.socials %}
+        <div class="social">
+            <div class="social_name">{{ social.name }}</div>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Ressources</h2>
+<div class="ressource_container">
+    {% for ressource in user.ressources %}
+        <div class="ressource">
+            <div class="ressource_name">{{ ressource.name }}</div>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Pormotions</h2>
+<div class="promotion_container">
+    {% for promotion in user.promotions %}
+        <div class="promotion">
+            <div class="promotion_name">{{ promotion.name }}</div>
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Template</h2>
+<div class="promotion_container">
+        <div class="promotion">
+            <div class="promotion_name">{{ user.template.title }}</div>
+        </div>
+</div>
+
+{% endblock %}

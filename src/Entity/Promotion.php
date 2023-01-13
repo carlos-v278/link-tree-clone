@@ -33,6 +33,12 @@ class Promotion
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $bg_color = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $color_txt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +112,30 @@ class Promotion
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getBgColor(): ?string
+    {
+        return $this->bg_color;
+    }
+
+    public function setBgColor(?string $bg_color): self
+    {
+        $this->bg_color = $bg_color;
+
+        return $this;
+    }
+
+    public function getColorTxt(): ?string
+    {
+        return $this->color_txt;
+    }
+
+    public function setColorTxt(?string $color_txt): self
+    {
+        $this->color_txt = $color_txt;
 
         return $this;
     }
