@@ -26,9 +26,6 @@ class Promotion
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_end = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $url_image = null;
-
     #[ORM\ManyToOne(inversedBy: 'promotions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -38,6 +35,8 @@ class Promotion
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $color_txt = null;
+
+
 
     public function getId(): ?int
     {
@@ -92,17 +91,6 @@ class Promotion
         return $this;
     }
 
-    public function getUrlImage(): ?string
-    {
-        return $this->url_image;
-    }
-
-    public function setUrlImage(string $url_image): self
-    {
-        $this->url_image = $url_image;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {

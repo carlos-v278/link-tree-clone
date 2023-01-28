@@ -21,12 +21,12 @@ class Social
     #[ORM\Column(length: 255)]
     private ?string $social_url = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $url_icone = null;
-
     #[ORM\ManyToOne(inversedBy: 'socials')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $font_awesome_icon_name = null;
 
     public function getId(): ?int
     {
@@ -57,18 +57,6 @@ class Social
         return $this;
     }
 
-    public function getUrlIcone(): ?string
-    {
-        return $this->url_icone;
-    }
-
-    public function setUrlIcone(string $url_icone): self
-    {
-        $this->url_icone = $url_icone;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -84,6 +72,18 @@ class Social
     public function setCreatedUser(Security $userSecurity): self
     {
         $this->user = $userSecurity->getUser();
+        return $this;
+    }
+
+    public function getFontAwesomeIconName(): ?string
+    {
+        return $this->font_awesome_icon_name;
+    }
+
+    public function setFontAwesomeIconName(string $font_awesome_icon_name): self
+    {
+        $this->font_awesome_icon_name = $font_awesome_icon_name;
+
         return $this;
     }
 }

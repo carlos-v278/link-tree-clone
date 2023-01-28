@@ -11,20 +11,63 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
+            ->add(
+                'firstname',
+                TextType::class,
+                [
+                    'attr' => ['class' => 'row_input'],
+                    'label' => 'Prenom '
+                ]
+            )
+
+
+            ->add(
+                'lastname',
+                TextType::class,
+                [
+                    'attr' => ['class' => 'row_input'],
+                    'label' => 'Nom'
+                ]
+            )
+
+            ->add(
+                'email',
+                EmailType::class,
+                [
+                    'attr' => ['class' => 'row_input'],
+                    'label' => 'Email '
+                ]
+            )
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'label' => 'Image de profile',
+                'mapped' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
+                ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'vous devez accepter nos conditions',
                     ]),
                 ],
             ])
@@ -35,18 +78,17 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrer le mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Tu devrais être à {{ limit }} de lettre',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ]);
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

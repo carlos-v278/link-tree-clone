@@ -6,11 +6,19 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+/**
+ * @ORM\Entity
+ * @Vich\Uploadable
+ */
+
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -36,6 +44,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
+
+    /**
+     * @Vich\UploadableField(mapping="ressource_images", fileNameProperty="profile_image")
+     */
+    private $imageFile;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profile_image = null;
@@ -311,5 +324,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->slug = $slug;
 
         return $this;
+    }
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
     }
 }
