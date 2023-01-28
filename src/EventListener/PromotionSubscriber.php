@@ -2,13 +2,13 @@
 
 namespace App\EventListener;
 
-use App\Entity\Social;
+use App\Entity\Promotion;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Security;
 
-class SocialSubscriber implements EventSubscriberInterface
+class PromotionSubscriber implements EventSubscriberInterface
 {
     private $security;
 
@@ -29,7 +29,7 @@ class SocialSubscriber implements EventSubscriberInterface
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof Social) {
+        if (!$entity instanceof Promotion) {
             return;
         }
 
@@ -41,7 +41,7 @@ class SocialSubscriber implements EventSubscriberInterface
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof Social) {
+        if (!$entity instanceof Promotion) {
             return;
         }
 

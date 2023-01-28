@@ -3,22 +3,12 @@
 {% block title %}Hello DashboardController!{% endblock %}
 
 {% block body %}
-<h2>social</h2>
-<div class="social_container">
-    {% for social in user.socials %}
-        <div class="social">
-            <div class="social_name">{{ social.name }}</div>
-        </div>
-    {% endfor %}
-</div>
-
-<h2>Ressources</h2>
-<div class="ressource_container">
-    {% for ressource in user.ressources %}
-        <div class="ressource">
-            <div class="ressource_name">{{ ressource.name }}</div>
-        </div>
-    {% endfor %}
+<h2>Template</h2>
+<div class="promotion_container">
+    <div class="promotion">
+        <div class="promotion_name">{{ user.template.title }}</div>
+        <a href="{{ path('app_template_edit', { 'id': user.template.id }) }}">Mettre à jour le template</a>
+    </div>
 </div>
 
 <h2>Pormotions</h2>
@@ -26,15 +16,32 @@
     {% for promotion in user.promotions %}
         <div class="promotion">
             <div class="promotion_name">{{ promotion.name }}</div>
+              <a href="{{ path('app_promotion_edit', { 'id': promotion.id}) }}">Mettre à jour la {{promotion.name}}</a>
         </div>
     {% endfor %}
+    <a href="{{ path('app_new_promo') }}">Ajouter une nouvelle promotion</a>
 </div>
 
-<h2>Template</h2>
-<div class="promotion_container">
-        <div class="promotion">
-            <div class="promotion_name">{{ user.template.title }}</div>
+<h2>Ressources</h2>
+<div class="ressource_container">
+    {% for ressource in user.ressources %}
+        <div class="ressource">
+            <div class="ressource_name">{{ ressource.name }}</div>
+            <a href="{{ path('app_ressource_edit', { 'id': ressource.id}) }}">Mettre à jour la {{ressource.name}}</a>
         </div>
+    {% endfor %}
+     <a href="{{ path('app_new_ressource') }}">Ajouter une nouvelle ressource</a>
+</div>
+
+<h2>social</h2>
+<div class="social_container">
+    {% for social in user.socials %}
+        <div class="social">
+            <div class="social_name">{{ social.name }}</div>
+             <a href="{{ path('app_social_edit', { 'id': social.id}) }}">Mettre à jour la {{social.name}}</a>
+        </div>
+    {% endfor %}
+         <a href="{{ path('app_new_social') }}">Ajouter une nouveau réseau</a>
 </div>
 
 {% endblock %}

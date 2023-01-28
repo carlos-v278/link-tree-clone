@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Ressource{% endblock %}
+
+{% block body %}
+    <h1>Création  nouvelle ressource</h1>
+
+    {{ include('dashboard/new/_form.html.twig') }}
+
+    <a href="{{ path('app_test_index') }}">Revenir sur le Tableau de bord</a>
+{% endblock %}

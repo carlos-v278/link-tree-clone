@@ -23,6 +23,7 @@ use Symfony\Component\Security\Core\Security;
 #[Route('/tableaudebord')]
 class DashboardController extends AbstractController
 {
+    //Method pour la view du dashboard client 
     #[Route('/', name: 'app_dashboard', methods: ['GET'])]
     public function index(Security $security): Response
     {
@@ -33,7 +34,7 @@ class DashboardController extends AbstractController
             'user' => $user,
         ]);
     }
-
+    //Method crud pour l'ajout d'un nouveau  réseau
     #[Route('/nouveau/reseau', name: 'app_new_social', methods: ['GET', 'POST'])]
     public function newSocial(Request $request, SocialRepository $socialRepository): Response
     {
@@ -52,6 +53,7 @@ class DashboardController extends AbstractController
         ]);
     }
 
+    //Method crud pour l'ajout d'une nouvelle ressource
     #[Route('/nouveau/lien', name: 'app_new_ressource', methods: ['GET', 'POST'])]
     public function newRessource(Request $request, RessourceRepository $ressourceRepository): Response
     {
@@ -66,6 +68,99 @@ class DashboardController extends AbstractController
 
         return $this->renderForm('dashboard/new/new_ressource.html.twig', [
             'social' => $ressource,
+            'form' => $form,
+        ]);
+    }
+
+    //Method crud pour l'ajout d'une nouvelle ressource
+    #[Route('/nouveau/promo', name: 'app_new_promo', methods: ['GET', 'POST'])]
+    public function newPromotion(Request $request, PromotionRepository $promotionRepository): Response
+    {
+        $promotion = new Promotion();
+        $form = $this->createForm(PromotionType::class, $promotion);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $promotionRepository->save($promotion, true);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/new/new_promo.html.twig', [
+            'social' => $promotion,
+            'form' => $form,
+        ]);
+    }
+    //method edit template
+    #[Route('/template/{id}/', name: 'app_template_edit', methods: ['GET', 'POST'])]
+    public function editTemplate(Request $request, Template $template, TemplateRepository $templateRepository): Response
+    {
+        $form = $this->createForm(TemplateType::class, $template);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $templateRepository->save($template, true);
+
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/edit/edit_template.html.twig', [
+            'template' => $template,
+            'form' => $form,
+        ]);
+    }
+    //method edit Promotion
+    #[Route('/edit/promotion/{id}/', name: 'app_promotion_edit', methods: ['GET', 'POST'])]
+    public function editPromotion(Request $request, Promotion $promotion, PromotionRepository $promotionRepository): Response
+    {
+        $form = $this->createForm(PromotionType::class, $promotion);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $promotionRepository->save($promotion, true);
+
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/edit/edit_promotion.html.twig', [
+            'promotion' => $promotion,
+            'form' => $form,
+        ]);
+    }
+
+    //method edit ressource
+    #[Route('/edit/ressource/{id}/', name: 'app_ressource_edit', methods: ['GET', 'POST'])]
+    public function editRessource(Request $request, Ressource $ressource, RessourceRepository $ressourceRepository): Response
+    {
+        $form = $this->createForm(RessourceType::class, $ressource);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ressourceRepository->save($ressource, true);
+
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/edit/edit_ressource.html.twig', [
+            'ressource' => $ressource,
+            'form' => $form,
+        ]);
+    }
+
+    //method edit Social
+    #[Route('/edit/social/{id}/', name: 'app_social_edit', methods: ['GET', 'POST'])]
+    public function editSocial(Request $request, Social $social, SocialRepository $socialRepository): Response
+    {
+        $form = $this->createForm(SocialType::class, $social);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $socialRepository->save($social, true);
+
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/edit/edit_social.html.twig', [
+            'social' => $social,
             'form' => $form,
         ]);
     }
