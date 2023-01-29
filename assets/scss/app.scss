@@ -1,6 +1,6 @@
-body {
-    background: red;
-    .title {
-        color: green;
-    }
-}
+@import "./utils/variables.scss";
+@import "./utils/flex.scss";
+@import "./utils/utils.scss";
+@import "./reset/base.scss";
+
+@import "./pages/home.scss";

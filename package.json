@@ -21,6 +21,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "sass": "^1.57.1"
+        "parcel-bundler": "^1.12.5",
+        "sass": "^1.57.1",
+        "swiper": "^8.4.6"
     }
 }

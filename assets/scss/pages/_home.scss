@@ -1,0 +1,537 @@
+.navLogo{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.container_menu_mobile{
+    margin-left: 25px;
+    margin-right: 5px;
+    .menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: black;
+        text-align: center;
+        font-size: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        padding-top: 40px;
+        transform: translateX(-100%);
+        transition: transform 1s;
+        li{
+            width: 100%;
+            border-bottom: 1px gray solid;
+            padding: 20px;
+            a{
+                color: black;
+                &:hover,:active,:focus{
+                    color: $primary-color;
+                }
+            }
+        }
+        .button_logIn_mobile{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0px 40px 0px;
+            box-shadow: 2px 0px 20px rgba(207, 207, 207, 0.336);
+            .btn{
+                background-color: $primary-color;
+                margin-left: 10px;
+                color: white;
+            }
+        }
+    }
+    .toggle {
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+        position: relative;
+        z-index: 20;
+    }
+}
+
+.ouvrir {
+    display: block;
+}
+
+.fermer {
+    display: none;
+}
+
+.open .ouvrir {
+    display: none;
+}
+
+.open .fermer {
+    display: block;
+}
+
+.open .menu {
+    transform: translateX(0);
+}
+
+header{
+    .button_singIn{
+        .btn{
+            background-color: $primary-color;
+            margin-left: 10px;
+            color: white;
+            &:hover,:active,:focus{
+                background-color: transparent;
+                color: black;
+                transition: background-color 300ms linear;
+            }
+        }
+    }
+
+    .button_logIn{
+        display: none;
+        .btn{
+            &:hover,:active,:focus{
+                color: white;
+                background-color: $primary-color;
+                transition: background-color 300ms linear;
+            }
+        }
+    }
+
+    .btn{
+        transition: width 2s, height 4s;
+        width: 100px;
+        height: 30px;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $primary-color;
+        color: $text-color;
+        border-radius: 30px;
+    }
+
+    .nav_link{
+        display: none;
+        margin-left: 50px;
+        font-size: 20px;
+        li{
+            margin-right: 30px;
+            a{
+                color: black;
+                &:hover,:active,:focus{
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+
+.navPrincipale{
+    box-shadow: 2px 2px 20px rgba(207, 207, 207, 0.336);
+}
+
+.sct1{
+    &-p1{
+        font-size: 17px;
+    }
+    &-p2{
+        font-size: 25px;
+    }
+    &-p3{
+        font-size: 17px;
+    }
+}
+
+
+footer{
+    background-color: $text-color;
+    color: $secondary-color;
+    .footerLogo{
+        font-size: 40px;
+    }
+    .titleFooterLink{
+        border-bottom: 1px solid $secondary-color;
+    }
+    i{
+        font-size: 25px;
+        margin-right: 20px ;
+    }
+    a{
+        color: white;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
+
+.sect_team{
+    text-align: center;
+    overflow: hidden;
+    & > p{
+        font-size: 20px;
+    }
+}
+
+
+.container_team_member{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    width: 250px;
+    height: 300px;
+    margin: 15px;
+    .name_role{
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.281);
+        color: white;
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+.container_front_dev{
+    background-image: url(../../../public/images/dev_frontend.jpg);
+}
+
+.container_back_dev{
+    background-image: url(../../../public/images/dev_backend.png);
+}
+
+.container_boss_project{
+    background-image: url(../../../public/images/checf_project.png);
+}
+
+
+
+.full_carousel_container{
+    text-align: center;
+    width: 100%;
+    margin: 10px auto;
+    position: relative;
+    padding: 40px 0;
+    margin: 40px 0px;
+    background-color: #EFEFEF;
+    .title_section{
+        font-size: 20px;
+    }
+}
+
+
+.full_carousel_container .slide_button{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    z-index: 99;
+}
+
+.slide_button p{
+    width: 100%;
+}
+
+.slide_button p span{
+    font-size: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: $primary-color;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: white;
+}
+.slide_button p span:hover{
+    background: #222;
+    color: white;
+}
+.container_carousel{
+    width: 100%;
+    height: 330px;
+    padding: 0px 10px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+.container_carousel::-webkit-scrollbar{
+    display: none;
+}
+.container_carousel .card{
+    min-width: 24%;
+    background: whitesmoke;
+    margin:  0 15px  0 0;
+    position: relative;
+    left: 0;
+    transition: 0.5s;
+
+}
+picture{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+picture img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.pseudo_influ{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(128, 128, 128, 0.342);
+    color : white;
+    margin-top: -50px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pp_section{
+    .design_scroll{
+        display: none;
+    }
+    
+    .icone_reseaux{
+        display: none;
+    }
+}
+
+.formulaire_de_contact{
+    padding: 50px 20px;
+    margin-top: 50px;
+    background-color: #EFEFEF;
+    h2{
+        font-size: 20px;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    & input, textarea{
+        color: black;
+        font-size: 15px;
+        font-weight: 500;
+        background-color: transparent;
+        border: none;
+        padding: 10px 0px;
+        width: 100%;
+        border-bottom: 1px solid gray;
+        margin-bottom: 10px;
+        outline: none;
+        &:focus{
+            border-bottom: 2px solid $primary-color;
+        }
+        ::placeholder{
+            color: black;
+        }
+    }
+    textarea{
+        font-size: 15px;
+        height: 40px;
+    }
+
+    button{
+        color: white;
+        padding: 10px 30px;
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        margin: 20px 0px;
+        cursor: pointer;
+        &:hover,:active,:focus{
+            background-color: transparent;
+            color: black;
+            transition: background-color 300ms linear;
+        }
+    }
+    
+}
+
+.info_contact{
+    & > p{
+        margin: 50px 0px;
+    }
+    h3{
+        color: black;
+        font-size: 17px;
+        font-weight: 600;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid black;
+    }
+    .value_contact_info{
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide_button p span{
+        font-size: 30px;
+    }
+    .container_carousel .card{
+        min-width: 49%;
+        margin:  0 10px  0 0;
+    }
+}
+
+@media screen and (min-width:750px) {
+
+    header{
+        .button_logIn{
+            display: block;
+        }
+        .nav_link{
+            display: block;
+        }
+    }
+
+    .container_menu_mobile{
+        display: none;
+    }
+
+    .container_carousel{
+        height: 400px;
+        padding: 0px 100px;
+    }
+
+    picture img{
+        height: 370px;
+    }
+
+    .navPrincipale{
+        padding: 15px 50px;
+    }
+
+    .pp_section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+        img{
+            width: 500px;
+            padding-left: 80px;
+        }
+        .sct1-p1{
+            font-size: 25px;
+        }
+
+        .sct1-p2{
+            font-size: 30px;
+        }
+
+        .sct1-p3{
+            font-size: 20px;
+        }
+        .design_scroll{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 70px;
+            p{
+                transform: rotate(-90deg);
+                font-size: 20px;
+            }
+            .bar{
+                margin-top: 20px;
+                width: 3px;
+                height: 40px;
+                background-color: $primary-color;
+            }
+        }
+
+        .icone_reseaux{
+            font-size: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-left: 70px;
+            a{
+                color: $primary-color;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .conainer_all_team{
+        flex-direction: row;
+        margin: 20px 0px;
+    }
+
+    footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .link_section{
+            flex: 1 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-left: 80px;
+            div:nth-child(2) > p, div:nth-child(3) > p{
+                margin-top: 0px;
+            }
+            div{
+                margin-right: 30px;
+            }
+        }
+    }
+
+    .sect_team > p{
+        font-size: 25px;
+    }
+
+    .full_carousel_container{
+        .title_section{
+            font-size: 25px;
+        }
+    }
+    
+    .container_boss_project{
+        width: 300px;
+        height: 370px;
+    }
+
+    .formulaire_de_contact{
+        padding: 50px;
+        h2{
+            font-size: 25px;
+        }
+    }
+}
+
+@media screen and (min-width:650px) {
+    .container_contact{
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+        .info_contact{
+            width: 50%;
+            margin-left: 50px;
+            & > p{
+                margin-top: 0px;
+            }
+        }
+        form{
+            width: 35%;
+        }
+    }
+}
