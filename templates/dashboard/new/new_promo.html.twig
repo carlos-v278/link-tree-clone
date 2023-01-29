@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Promotion{% endblock %}
+
+{% block body %}
+    <h1>Création  nouvelle promotion</h1>
+
+    {{ include('dashboard/new/_form.html.twig') }}
+
+    <a href="{{ path('app_dashboard') }}">Revenir sur le Tableau de bord</a>
+{% endblock %}
