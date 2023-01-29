@@ -420,10 +420,11 @@ picture img{
     }
 
     .pp_section{
+        height: 80vh;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 20px;
+        padding: 0px 120px;
         img{
             width: 500px;
             padding-left: 80px;
@@ -440,6 +441,11 @@ picture img{
             font-size: 20px;
         }
         .design_scroll{
+            position: fixed;
+            left: 2%;
+            top: 50%;
+            transform: translate(0%, -50%);
+            z-index: 999;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -458,6 +464,11 @@ picture img{
         }
 
         .icone_reseaux{
+            position: fixed;
+            right: 2%;
+            top: 50%;
+            transform: translate(0%, -50%);
+            z-index: 999;
             font-size: 25px;
             display: flex;
             flex-direction: column;
@@ -500,6 +511,10 @@ picture img{
     }
 
     .full_carousel_container{
+        padding: 40px 100px;
+        .slide_button{
+            padding: 0px 100px;
+        }
         .title_section{
             font-size: 25px;
         }
@@ -511,7 +526,7 @@ picture img{
     }
 
     .formulaire_de_contact{
-        padding: 50px;
+        padding: 50px 100px;
         h2{
             font-size: 25px;
         }
@@ -532,6 +547,14 @@ picture img{
         }
         form{
             width: 35%;
+        }
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .pp_section{
+        img{
+            width: 900px;
         }
     }
 }
@@ -584,6 +607,11 @@ picture img{
         }
     }
     .design_scroll{
+        position: fixed;
+        left: 2%;
+        top: 50%;
+        z-index: 999;
+        transform: translate(0%, -50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -763,10 +791,16 @@ picture img{
 
 @media screen and (min-width:700px) {
     .LP_infoInflu{
+        padding: 20px 130px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         .icone_container{
+            transform: translate(0%, -50%);
+            position: fixed;
+            right: 2%;
+            top: 50%;
+            z-index: 999;
             flex-direction: column;
             a{
                 margin-right: 0px;
@@ -786,5 +820,11 @@ picture img{
         .design_scroll{
             display: flex;
         }
+    }
+}
+
+@media screen and (min-width:1100px) {
+    .LP_infoInflu{
+        height: 100vh;
     }
 }
