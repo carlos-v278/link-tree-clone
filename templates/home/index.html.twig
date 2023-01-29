@@ -1,19 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - {{parent()}}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section class="pp_section mt-40 px-20">
+        <div class="design_scroll">
+            <p>scroll</p>
+            <div class="bar"></div>
+        </div>
+        <div>
+            <p class="primaryColor mb-10 sct1-p1">Tous vos liens à porter de main</p>
+            <p class="mb-10 sct1-p2">Transformer tout vos <span class="primaryColor">followers En clients</span> potentiels grace à All dev long. </p>
+            <p class="sct1-p3">All dev long est un outils de gestion de votrebio et de vos liens.</p>
+        </div>
+        <div class="my-30">
+            <img src={{ asset('images/imgSect1.png') }} alt="Image d'illustration">
+        </div>
+        <div class="icone_reseaux">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/carlos/Desktop/carlos/mega sync/projets/link-tree-clone/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/carlos/Desktop/carlos/mega sync/projets/link-tree-clone/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <section class="full_carousel_container">
+        <div class="title_section mb-20">
+            Un outil au gouts de tous <br/> <span class="primaryColor">Les designers.</span>
+        </div>
+		<div class="slide_button">
+			<p class="d-flex flex-row justify-content-spacebetween">
+				<span class="button_carousel"><i class="fa-solid fa-chevron-left"></i></span>
+				<span class="button_carousel"><i class="fa-solid fa-chevron-right"></i></span>
+			</p>
+		</div>
+		<div class="container_carousel">
+			<div class="card">
+				<picture>
+					<img src={{ asset('images/crl1.png') }} alt="">
+                    <p class="pseudo_influ">@melodievaxelaire</p>
+				</picture>
+			</div>
+            <div class="card">
+				<picture>
+					<img src={{ asset('images/crl2.png') }} alt="">
+                    <p class="pseudo_influ">@melodievaxelaire</p>
+				</picture>
+			</div>
+            <div class="card">
+				<picture>
+					<img src={{ asset('images/crl3.png') }} alt="">
+                    <p class="pseudo_influ">@melodievaxelaire</p>
+				</picture>
+			</div>
+            <div class="card">
+				<picture>
+					<img src={{ asset('images/crl4.png') }} alt="">
+                    <p class="pseudo_influ">@melodievaxelaire</p>
+				</picture>
+			</div>
+		</div>
+	</section>
+
+    <section class="d-flex flex-column align-items-center sect_team">
+        <p class="px-20">Une équipe à l'écoute des <br> <span class="primaryColor">Utilisateurs.</span></p>
+        <div class="conainer_all_team d-flex flex-column align-items-center">
+            <div class="container_team_member container_front_dev">
+                <p class="name_role">Développeur Front</p>
+            </div>
+
+            <div class="container_team_member container_boss_project">
+                <p class="name_role">Chef de projet</p>
+            </div>
+
+            <div class="container_team_member container_back_dev">
+                <p class="name_role">Développeur Back</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="formulaire_de_contact">
+        <h2>Formulaire de <span class="primaryColor">contact</span></h2>
+        <div class="container_contact">
+            <form action="">
+                <div>
+                    <input type="text" placeholder="Nom*" required>
+                </div>
+                <div>
+                    <input type="text" placeholder="Prenom*" required>
+                </div>
+                <div>
+                    <input type="email" placeholder="Mail*" required>
+                </div>
+                <div>
+                    <input type="tel" placeholder="Téléphone*" required>
+                </div>
+                <div>
+                    <input type="text" placeholder="Objet*" required>
+                </div>
+                <div>
+                    <textarea name="" id="" cols="10" rows="10" placeholder="Message*"></textarea>
+                </div>
+                <button type="submit">Envoyer</button>
+            </form>
+            <div class="info_contact">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis non illo recusandae voluptate doloremque earum modi natus est nisi dolores quas sunt aliquid consectetur, dicta voluptates possimus ea labore.
+                </p>
+
+                <div class="value_contact_info">
+                    <h3>Numéro</h3>
+                    <p>+33 5 46 45 01 21</p>
+                </div>
+
+                <div class="value_contact_info">
+                    <h3>Adresse</h3>
+                    <p>8 rue de la bonette 17000 La Rochelle</p>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
