@@ -24,7 +24,8 @@ class UserSubscriber implements EventSubscriberInterface
         }
         $firstName = $entity->getFirstName();
         $lastName = $entity->getLastname();
-        $slug = $firstName . '-' . $lastName;
+        $id = $entity->getId();
+        $slug = $id . '-' . $firstName . '-' . $lastName;
         $entity->setSlug($slug);
     }
 }

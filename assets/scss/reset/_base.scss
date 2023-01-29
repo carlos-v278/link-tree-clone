@@ -3,7 +3,13 @@ body {
     font-family: $font-family;
     color: $text-color;
     background-color: $secondary-color;
-  }
+}
+/**
+ * Smooth scrolling on the whole document
+ */
+ html {
+	scroll-behavior: smooth;
+}
     
   h1,
   h2,

@@ -13,14 +13,11 @@ class Template
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $baseline = 'lorem....';
 
-    #[ORM\Column(length: 255)]
-    private ?string $baseline = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $youtube_url = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $youtube_url = 'link....';
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $section_1_bg_color = null;
@@ -71,17 +68,8 @@ class Template
         return $this->id;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
 
-        return $this;
-    }
 
     public function getBaseline(): ?string
     {

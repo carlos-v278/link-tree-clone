@@ -90,6 +90,25 @@ class DashboardController extends AbstractController
             'form' => $form,
         ]);
     }
+    //Method crud pour l'ajout d'un nouveau template
+    #[Route('/nouveau/template', name: 'app_new_template', methods: ['GET', 'POST'])]
+    public function newTemplate(Request $request, TemplateRepository $templateRepository): Response
+    {
+        $template = new Template();
+        $form = $this->createForm(TemplateType::class, $template);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $templateRepository->save($template, true);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/new/new_template.html.twig', [
+            'social' => $template,
+            'form' => $form,
+        ]);
+    }
+
     //method edit template
     #[Route('/template/{id}/', name: 'app_template_edit', methods: ['GET', 'POST'])]
     public function editTemplate(Request $request, Template $template, TemplateRepository $templateRepository): Response

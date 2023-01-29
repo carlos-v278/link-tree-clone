@@ -17,19 +17,9 @@ class HomeController extends AbstractController
     public function index(Security $security): Response
     {
         $user = $this->getUser();
-
+        dump($user->getId());
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-        ]);
-    }
-
-    #[Route('/landing/{slug}', name: 'app_template', methods: ['GET'])]
-    public function template($slug, UserRepository $UserRepository): Response
-    {
-        $user = $UserRepository->findBy(['slug' => $slug]);
-        dump($user);
-        return $this->render('home/landing_template.html.twig', [
-            'user' => $user[0],
         ]);
     }
 }

@@ -15,14 +15,6 @@ class TemplateType extends AbstractType
     {
         $builder
             ->add(
-                'title',
-                TextType::class,
-                [
-                    'attr' => ['class' => 'row_input'],
-                    'label' => 'Titre '
-                ]
-            )
-            ->add(
                 'baseline',
                 TextType::class,
                 [
