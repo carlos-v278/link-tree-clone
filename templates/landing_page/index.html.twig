@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Landing Page - All dev long{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/c5e216e624.js" crossorigin="anonymous"></script>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('script') }}
+        {% endblock %}
+    </head>
+    <body class="LP_body">
+        <header class="LP_header">
+            <div class="container_menu_mobile">
+                <nav>
+                    <div class="toggle">
+                        <i class="fas fa-bars ouvrir"></i>
+                        <i class="fas fa-times fermer"></i>
+                    </div>
+                    <ul class="menu">
+                        <div>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Nous contacter</a></li>
+                            <li><a href="#">Notre équipe</a></li>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="LP_mainContent">
+            <section class="LP_infoInflu">
+                <div class="design_scroll">
+                    <p>scroll</p>
+                    <div class="bar"></div>
+                </div>
+                <div>
+                    <h1 class="name">Melodie Vaxelaire</h1>
+                    <p class="description">Lorem ipsum dolor sit amet, consetetur sadipscing  elitr, sed diam sed diam</p>
+                </div>
+                <div class="images_container flex-column d-flex justify-content-center align-items-center">
+                    <img class="image_ellipse" src={{ asset('images/ellipse_grid.png') }} alt="">
+                    <img class="photo_influ" src={{ asset('images/melodie.png') }} alt="">
+                </div>
+                <div class="icone_container d-flex justify-content-center align-items-center">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </section>
+
+            <section class="LP_section_video">
+                <h2 class="title">Titre de la <span class="lp_text_mark">vidéo</span></h2>
+                <p clas="description">Description de la vidéo</p>
+                <video class="video" src=""></video>
+            </section>
+
+            <section class="LP_section_code_promo">
+                <h2 class="title_section">Codes promos <br> <span class="lp_text_mark">du Jour</span></h2>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, velit illo! Unde sequi consectetur vitae asperiores cumque vel veniam amet ea neque aperiam consequuntur, saepe et alias dolor sed impedit?</p>
+                <div class="container_all_code d-flex justify-content-center align-items-center">
+                    <div class="container_one_code">
+                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
+                        <p>10% sur la gamme chaussures</p>
+                    </div>
+                    <div class="container_one_code">
+                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
+                        <p>10% sur la gamme chaussures</p>
+                    </div>
+                    <div class="container_one_code">
+                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
+                        <p>10% sur la gamme chaussures</p>
+                    </div>
+                    <div class="container_one_code">
+                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
+                        <p>10% sur la gamme chaussures</p>
+                    </div>
+                    <div class="container_one_code">
+                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
+                        <p>10% sur la gamme chaussures</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="LP_rester_informer">
+                <h2 class="title_section"><span class="lp_text_mark">Rester</span> informer</h2>
+                <p class="description">Les liens à ne pas manquer</p>
+                <div class="event_and_formContact">
+                    <div class="container_all_event">
+                        <div>
+                            <a href="">
+                                <div class="container_oneEvent boutique">
+                                    <p>Boutique</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <div class="container_oneEvent blog">
+                                    <p>Blog</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <div class="container_oneEvent evenement">
+                                    <p>Evènement</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="">
+                                <div class="container_oneEvent evenement">
+                                    <p>Evènement</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="formulaire_de_contact">
+                        <h2>Formulaire de <span class="lp_text_mark">contact</span></h2>
+                        <div class="container_contact">
+                        <form action="">
+                            <div>
+                                <input type="text" placeholder="Nom*" required>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Prenom*" required>
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Mail*" required>
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Téléphone*" required>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Objet*" required>
+                            </div>
+                            <div>
+                                <textarea name="" id="" cols="10" rows="10" placeholder="Message*"></textarea>
+                            </div>
+                            <button type="submit">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="LP_rsx_sociaux">
+                <h2 class="section_title">Résaux</h2>
+                <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <div class="icone_container d-flex justify-content-center align-items-center">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

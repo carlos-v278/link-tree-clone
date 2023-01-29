@@ -5,3 +5,18 @@ $font-family : futura-pt, sans-serif;
 $text-color :#383838;
 $primary-color: #14CF93;
 $secondary-color: #FCFAF8;
+
+
+:root{
+    --lp_bg_color :#FCFAF8; 
+    --lp_text_color: #383838;
+    --lp_text_mark_color: #14CF93;
+    --lp_button_bg_color: #14CF93;
+    --lp_button_color: white;
+    --lp_icone_rsx_color: #14CF93;
+
+    --lp_boutique_bg_img: "images/boutique1.png";
+    --lp_blog_bg_img: "images/blog.png" ;
+    --lp_event1_bg_img: "images/event.png";
+    --lp_event2_bg_img: "images/event.png";
+}
