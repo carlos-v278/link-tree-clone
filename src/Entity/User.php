@@ -294,7 +294,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function __toString()
     {
-        return $this->firstname . ' ' . $this->lastname . ' ' . $this->email . ' ' . $this->profile_image;;
+        return $this->firstname . ' ' . $this->lastname . ' ' . $this->email . ' ' . $this->profile_image;
     }
 
     public function getTemplate(): ?Template

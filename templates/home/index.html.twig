@@ -3,7 +3,7 @@
 {% block title %}Accueil - {{parent()}}{% endblock %}
 
 {% block body %}
-    <section class="pp_section mt-40 px-20">
+    <section class="pp_section mt-40 px-20 min_height" id="home">
         <div class="design_scroll">
             <p>scroll</p>
             <div class="bar"></div>
@@ -13,7 +13,7 @@
             <p class="mb-10 sct1-p2">Transformer tout vos <span class="primaryColor">followers En clients</span> potentiels grace à All dev long. </p>
             <p class="sct1-p3">All dev long est un outils de gestion de votrebio et de vos liens.</p>
         </div>
-        <div class="my-30">
+        <div class="my-30 img">
             <img src={{ asset('images/imgSect1.png') }} alt="Image d'illustration">
         </div>
         <div class="icone_reseaux">
@@ -23,7 +23,7 @@
         </div>
     </section>
 
-    <section class="full_carousel_container">
+    <section class="full_carousel_container min_height">
         <div class="title_section mb-20">
             Un outil au gouts de tous <br/> <span class="primaryColor">Les designers.</span>
         </div>
@@ -61,7 +61,7 @@
 		</div>
 	</section>
 
-    <section class="d-flex flex-column align-items-center sect_team">
+    <section class="d-flex flex-column align-items-center sect_team min_height" id="team">
         <p class="px-20">Une équipe à l'écoute des <br> <span class="primaryColor">Utilisateurs.</span></p>
         <div class="conainer_all_team d-flex flex-column align-items-center">
             <div class="container_team_member container_front_dev">
@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <section class="formulaire_de_contact">
+    <section class="formulaire_de_contact min_height" id="contact">
         <h2>Formulaire de <span class="primaryColor">contact</span></h2>
         <div class="container_contact">
             <form action="">

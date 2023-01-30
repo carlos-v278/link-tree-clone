@@ -16,95 +16,165 @@
     <body class="LP_body">
 
         <main class="LP_mainContent">
-            <section class="LP_infoInflu">
+            <section class="LP_infoInflu" 
+                style='background:{{user.template.section1BgColor}};'
+            >
                 <div class="design_scroll">
                     <p>scroll</p>
                     <div class="bar"></div>
                 </div>
                 <div>
-                    <h1 class="name">{{user.firstname}} {{user.lastname}}</h1>
-                    <p class="description">{{user.template.baseline}} </p>
+                    <h1 
+                        class="name" 
+                        style='color:{{user.template.section1TitleColor}};'
+                    >
+                        {{user.firstname}} {{user.lastname}}
+                    </h1>
+                    <p 
+                        class="description" 
+                        style='color:{{user.template.section1BaselineColor}};'
+                    >
+                        {{user.template.baseline}} 
+                    </p>
                 </div>
                 <div class="images_container flex-column d-flex justify-content-center align-items-center">
-                    <img class="image_ellipse" src={{ asset('images/ellipse_grid.png') }} alt="">
-                    <img class="photo_influ" src={{ asset('images/melodie.png') }} alt="">
+                    <img 
+                        class="image_ellipse" 
+                        src="{{ asset('images/ellipse_grid.png') }}" 
+                        alt=""
+                    >
+                    <img 
+                        class="photo_influ" 
+                        src="{{ asset('uploads/ressources/')}}{{user.profileImage }}" 
+                        alt=""
+                    >
                 </div>
-                <div class="icone_container d-flex justify-content-center align-items-center">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </section>
-
-            <section class="LP_section_video">
-                <h2 class="title">Titre de la <span class="lp_text_mark">vidéo</span></h2>
-                <p clas="description">Description de la vidéo</p>
-                <video class="video" src=""></video>
-            </section>
-
-            <section class="LP_section_code_promo">
-                <h2 class="title_section">Codes promos <br> <span class="lp_text_mark">du Jour</span></h2>
-                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, velit illo! Unde sequi consectetur vitae asperiores cumque vel veniam amet ea neque aperiam consequuntur, saepe et alias dolor sed impedit?</p>
-                <div class="container_all_code d-flex justify-content-center align-items-center">
-                    <div class="container_one_code">
-                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
-                        <p>10% sur la gamme chaussures</p>
-                    </div>
-                    <div class="container_one_code">
-                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
-                        <p>10% sur la gamme chaussures</p>
-                    </div>
-                    <div class="container_one_code">
-                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
-                        <p>10% sur la gamme chaussures</p>
-                    </div>
-                    <div class="container_one_code">
-                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
-                        <p>10% sur la gamme chaussures</p>
-                    </div>
-                    <div class="container_one_code">
-                        <span class="lp_text_mark code_promo">D5XF5</span> — Expire le : 30 janvier 2023
-                        <p>10% sur la gamme chaussures</p>
-                    </div>
+                <div 
+                    class="icone_container d-flex justify-content-center align-items-center"
+                >
+                    {% for social in user.socials %}
+                        <a 
+                            style='color:{{user.template.section5IconColor}};' 
+                            href="{{social.socialUrl }}"
+                        >
+                            <i class="{{social.fontAwesomeIconName }}"></i>
+                        </a>
+                    {% endfor %}
                 </div>
             </section>
+            {% if user.template.youtubeUrl|length > 0 %}
+                <section 
+                    class="LP_section_video" 
+                    style='background:{{user.template.section2BgColor}};'
+                 >
+                    <h2 
+                        class="title"
+                    >
+                        Vidéo 
+                        <span class="lp_text_mark">
+                            Youtube
+                        </span>
+                    </h2>
 
-            <section class="LP_rester_informer">
-                <h2 class="title_section"><span class="lp_text_mark">Rester</span> informer</h2>
+                    <div id="ytplayer"></div>
+                        <script>
+                            // Load the IFrame Player API code asynchronously.
+                            var tag = document.createElement('script');
+                            tag.src = "https://www.youtube.com/player_api";
+                            var firstScriptTag = document.getElementsByTagName('script')[0];
+                            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                            // Replace the 'ytplayer' element with an <iframe> and
+                            // YouTube player after the API code downloads.
+                            var player;
+                            function onYouTubePlayerAPIReady() {
+                                player = new YT.Player('ytplayer', {
+                                height: '360',
+                                width: '640',
+                                videoId: '{{user.template.youtubeUrl }}'
+                                });
+                            }
+                        </script>
+                </section>
+            {% endif %}
+            {% if user.promotions|length > 0  %}
+                <section 
+                    class="LP_section_code_promo" 
+                    style='background:{{user.template.section3BgColor}};' >
+                    <h2 class="title_section">
+                        Codes promos <br> 
+                        <span class="lp_text_mark">
+                            du Jour
+                        </span>
+                    </h2>
+
+                    <p class="description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Debitis, velit illo! Unde sequi consectetur vitae asperiores cumque vel veniam 
+                        amet ea neque aperiam consequuntur, saepe et alias dolor sed impedit?
+                    </p>
+                    <div class="container_all_code d-flex justify-content-center align-items-center">
+                    {% for promotion in user.promotions %}
+
+                        <div 
+                            class="container_one_code" 
+                            style='background:{{user.template.section3BgColorCard}}' 
+                        >
+                            <span 
+                                class="lp_text_mark code_promo"
+                                style='color:{{promotion.colorTxt}}; background:{{promotion.bgColor}}'
+                            
+                            >
+                                {{promotion.promotionalCode }}
+                            </span> 
+                                — {{promotion.dateStart|date("d/m/Y") }} 
+                                - {{promotion.dateEnd|date("d/m/Y") }}
+                            <p>{{ promotion.name }}</p>
+                        </div>
+                
+                    {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+        {% if user.ressources|length > 0 %}
+            <section 
+                class="LP_rester_informer" 
+                style='background:{{user.template.section4BgColor}};'
+            >
+                <h2 class="title_section">
+                    <span class="lp_text_mark">Rester</span> 
+                    informer
+                </h2>
                 <p class="description">Les liens à ne pas manquer</p>
                 <div class="event_and_formContact">
                     <div class="container_all_event">
-                        <div>
-                            <a href="">
-                                <div class="container_oneEvent boutique">
-                                    <p>Boutique</p>
+                        {% for ressource in user.ressources %}
+                        <div class="ressource_container">
+                            <a href="{{ressource.url}}">
+                                <div 
+                                    class="container_oneEvent boutique ressource_image" 
+                                    style='background:{{user.template.section4BgColorBtn}};'
+                                 >
+                                    <img 
+                                        src="{{ asset('uploads/ressources/')}}{{ressource.urlImage }}" 
+                                        alt="{{ ressource.name }}"
+                                    >
                                 </div>
+                                <span 
+                                    class="ressource_title" 
+                                    style='color:{{user.template.section4ColorTxtBtn}};'
+                                >
+                                    {{ ressource.name }}
+                                </span>
                             </a>
                         </div>
-                        <div>
-                            <a href="">
-                                <div class="container_oneEvent blog">
-                                    <p>Blog</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="container_oneEvent evenement">
-                                    <p>Evènement</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                <div class="container_oneEvent evenement">
-                                    <p>Evènement</p>
-                                </div>
-                            </a>
-                        </div>
+                          {% endfor %}
                     </div>
                     <div class="formulaire_de_contact">
-                        <h2>Formulaire de <span class="lp_text_mark">contact</span></h2>
+                        <h2>
+                            Formulaire de 
+                            <span class="lp_text_mark">contact</span>
+                        </h2>
                         <div class="container_contact">
                         <form action="">
                             <div>
@@ -130,17 +200,29 @@
                     </div>
                 </div>
             </section>
-
-
-            <section class="LP_rsx_sociaux">
-                <h2 class="section_title">Résaux</h2>
-                <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <div class="icone_container d-flex justify-content-center align-items-center">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </section>
+         {% endif %}
+        {% if user.socials|length > 0 %}
+            
+                <section 
+                    class="LP_rsx_sociaux" 
+                    style='background:{{user.template.section5BgColor}};'>
+                    <h2 class="section_title">Résaux</h2>
+                    <p class="description">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    </p>
+                    <div class="icone_container d-flex justify-content-center align-items-center">
+                        {% for social in user.socials %}
+                            <a 
+                                style='color:{{user.template.section5IconColor}};'
+                                href="{{social.socialUrl }}"
+                            >
+                                <i class="{{social.fontAwesomeIconName }}"></i>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+          
+        {% endif  %}
         </main>
     </body>
 </html>

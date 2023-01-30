@@ -37,6 +37,7 @@ security:
     - { path: ^/tableaudebord, roles: ROLE_USER }
     - { path: ^/nouveau/reseau, roles: ROLE_USER }
     - { path: ^/nouveau/lien, roles: ROLE_USER }
+    - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
   security:

@@ -5,7 +5,7 @@
 {% block body %}
 <div class="center-div">
     <div class="containeur-form-register">
-        <h1>Register</h1>
+        <h1>Inscription</h1>
         <div class="section">
         {{ form_start(registrationForm ) }}
         <div class="firs-last">
@@ -14,12 +14,12 @@
         </div>
             {{ form_row(registrationForm.email, { 'row_attr': {'class': 'custom-register'} }) }}
             {{ form_row(registrationForm.plainPassword, {
-                label: 'Password', 'row_attr': {'class': 'custom-register'} 
+                label: 'Mot de passe', 'row_attr': {'class': 'custom-register'} 
             }) }}
             {{ form_row(registrationForm.imageFile, { 'row_attr': {'class': 'custom-register-img'} }) }}
             {{ form_row(registrationForm.agreeTerms, { 'row_attr': {'class': 'custom-register-agree'} }) }}
             
-            <button type="submit" class="btn-submit">Register</button>
+            <button type="submit" class="btn-submit">Valider</button>
             {{ form_end(registrationForm) }}
     </div>
     </div>
