@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/tableaudebord')]
 class DashboardController extends AbstractController
@@ -169,7 +170,7 @@ class DashboardController extends AbstractController
     #[Route('/edit/social/{id}/', name: 'app_social_edit', methods: ['GET', 'POST'])]
     public function editSocial(Request $request, Social $social, SocialRepository $socialRepository): Response
     {
-        $form = $this->createForm(SocialType::class, $social);
+        $form = $this->createForm(SocialType::class, $social); 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -183,4 +184,41 @@ class DashboardController extends AbstractController
             'form' => $form,
         ]);
     }
+
+     //Method delet Promotion
+
+     #[Route('/delet/promotion/{id}', name: 'app_promotion_delet', methods: ['GET', 'POST'])]
+     public function deletePromotion(Request $request, Promotion $promotion, EntityManagerInterface $entityManager): Response
+     {
+         $entityManager->remove($promotion);
+         $entityManager->flush();
+      
+         return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+     }
+
+        //Method delet ressource
+
+        #[Route('/delet/ressource/{id}', name: 'app_ressource_delet', methods: ['GET', 'POST'])]
+        public function deleteRessource(Request $request, Ressource $ressource, EntityManagerInterface $entityManager): Response
+        {
+            $entityManager->remove($ressource);
+            $entityManager->flush();
+         
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+   
+        
+        //Method delet social
+
+        #[Route('/delet/social/{id}', name: 'app_social_delet', methods: ['GET', 'POST'])]
+        public function deleteSocial(Request $request, Social $social, EntityManagerInterface $entityManager): Response
+        {
+            $entityManager->remove($social);
+            $entityManager->flush();
+         
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+        
 }
+   
+
