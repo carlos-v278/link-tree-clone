@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}All dev long{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/c5e216e624.js" crossorigin="anonymous"></script>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('script') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<header>
+    <nav class="navPrincipale d-flex justify-content-spacebetween align-items-center p-10">
+        <div class="d-flex align-items-center flex-fill">
+            <a class="navLogo primaryColor" href="">
+                <div>Adl.</div>
+            </a>
+            <div class="nav_link">
+                    <ul class="d-flex justify-content-spacebetween align-items-center flex-fill">
+                        <li><a href="{{ path('app_home') }}#home">Accueil</a></li>
+                        <li><a href="#team">Notre équipe</a></li>
+                        <li><a href="#contact">Nous contacter</a></li>
+                    </ul>
+            </div>
+        </div>
+        <div class="d-flex justify-content-spacebetween algn-items-center">
+            <div class="button_logIn">
+                <a href="{{ path('app_login') }}">
+                    <div class="btn">Connexion</div>
+                </a>
+            </div>
+            <div class="button_singIn">
+                <a href="{{ path('app_register') }}">
+                    <div class="btn">S'inscrire</div>
+                </a>
+            </div>
+            <div class="container_menu_mobile">
+                <nav>
+                    <div class="toggle">
+                        <i class="fas fa-bars ouvrir"></i>
+                        <i class="fas fa-times fermer"></i>
+                    </div>
+                    <ul class="menu">
+                        <div>
+                            <li><a href="#home">Accueil</a></li>
+                            <li><a href="#contact">Nous contacter</a></li>
+                            <li><a href="#team">Notre équipe</a></li>
+                        </div>
+
+                        <div class="button_logIn_mobile">
+                            <a href="">
+                                <div class="btn">Connexion</div>
+                            </a>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+        <div>
+    </nav>
+</header>

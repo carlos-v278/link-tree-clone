@@ -53,14 +53,14 @@ class PromotionType extends AbstractType
                 [
                     'data' => '#14CF93',
                     'attr' => ['class' => 'row_input'],
-                    'label' => 'Couleur de fond section 1 '
+                    'label' => 'Couleur de fond de la card '
                 ]
             )
 
             ->add('color_txt', ColorType::class, [
                 'data' => '#14CF93',
                 'attr' => ['class' => 'row_input'],
-                'label' => 'Couleur de fond section 1 '
+                'label' => 'Couleur du code promo '
             ]);
     }
 

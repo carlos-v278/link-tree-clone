@@ -1,0 +1,63 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block title %}DashBoard Client{% endblock %}
+
+{% block body %}
+
+<div class="dashboard_container">
+    <div class="dashboard_side_bar">
+        <div class="sidebar_header">
+            <i  class=" fa-solid fa-gauge"></i>
+            <span>DashBoard</span>
+        </div>
+        <div class="sidebar_content">
+
+        </div>
+    </div>
+    <div class="dashboard_content">
+    <div class="imp_link">
+         <a class="go_back" href="{{ path('app_home') }}"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+        <a class="go_back" href="{{ path('app_logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i>  Déconnexion</a>
+    </div>
+
+        <div class="dashboard_content_row">
+                <div class="row_header">
+                    <h2 id="promotion_dashboard">Utilisateur</h2>
+                    <span class="line"></span>
+                </div>
+                <table class="table">
+                    <tr class="tr">
+                        <th></th>
+                        <th class="thead thead1 ">Id</th>
+                        <th class="thead">Email</th>
+                        <th class="thead">Roles</th>
+                        <th class="thead">Password</th>
+                        <th class="thead">Full Name</th>
+                        <th class="thead">Slug</th>
+                    </tr>
+                        {% for user in users %}
+                        <tr>
+                            <td class="tbody tbodyedit">
+                                <a class='delete_link'  href="{{ path('app_admin_delete', { 'id': user.id}) }}">
+                                    <i class="custom_icon fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                            <td class="tbody tbody1">{{ user.id }}</td>
+                            <td class="tbody">{{ user.email }}</td>
+                            <td class="tbody">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td class="tbody">{{ user.password }}</td>
+                            <td class="tbody">{{ user.firstname }} {{ user.lastname }}</td>
+                            <td class="tbody">{{ user.slug }}</td>
+                        </tr>
+                        {% endfor %}
+
+                </table>
+                  <a  class="btn" href="{{ path('app_register') }}">
+                    <i class="fa-solid fa-plus"></i>
+                  </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

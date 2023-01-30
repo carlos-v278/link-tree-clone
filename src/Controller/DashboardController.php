@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/tableaudebord')]
 class DashboardController extends AbstractController
@@ -28,7 +29,12 @@ class DashboardController extends AbstractController
     public function index(Security $security): Response
     {
         $user = $security->getUser();
-        dump($user);
+
+        foreach ($user->getRoles() as $value) {
+            if ($value == "ROLE_ADMIN") {
+                return $this->redirectToRoute('app_admin_index');
+            }
+        }
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'user' => $user,
@@ -90,6 +96,25 @@ class DashboardController extends AbstractController
             'form' => $form,
         ]);
     }
+    //Method crud pour l'ajout d'un nouveau template
+    #[Route('/nouveau/template', name: 'app_new_template', methods: ['GET', 'POST'])]
+    public function newTemplate(Request $request, TemplateRepository $templateRepository): Response
+    {
+        $template = new Template();
+        $form = $this->createForm(TemplateType::class, $template);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $templateRepository->save($template, true);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('dashboard/new/new_template.html.twig', [
+            'social' => $template,
+            'form' => $form,
+        ]);
+    }
+
     //method edit template
     #[Route('/template/{id}/', name: 'app_template_edit', methods: ['GET', 'POST'])]
     public function editTemplate(Request $request, Template $template, TemplateRepository $templateRepository): Response
@@ -163,5 +188,39 @@ class DashboardController extends AbstractController
             'social' => $social,
             'form' => $form,
         ]);
+    }
+
+    //Method delet Promotion
+
+    #[Route('/delet/promotion/{id}', name: 'app_promotion_delet', methods: ['GET', 'POST'])]
+    public function deletePromotion(Request $request, Promotion $promotion, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($promotion);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+    }
+
+    //Method delet ressource
+
+    #[Route('/delet/ressource/{id}', name: 'app_ressource_delet', methods: ['GET', 'POST'])]
+    public function deleteRessource(Request $request, Ressource $ressource, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($ressource);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    //Method delet social
+
+    #[Route('/delet/social/{id}', name: 'app_social_delet', methods: ['GET', 'POST'])]
+    public function deleteSocial(Request $request, Social $social, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($social);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import url("https://use.typekit.net/hlt4mqg.css");
+
+$font-family : futura-pt, sans-serif;
+$font-family-bold : "futura-pt-bold", sans-serif;
+$fw-400 : 400;
+$fw-500 : 500;
+$fw-700 : 700;
+$text-color :#383838;
+$primary-color: #14CF93;
+$secondary-color: #FCFAF8;
+
+
+:root{
+    --lp_bg_color :#FCFAF8; 
+    --lp_text_color: #383838;
+    --lp_text_mark_color: #14CF93;
+    --lp_button_bg_color: #14CF93;
+    --lp_button_color: white;
+    --lp_icone_rsx_color: #14CF93;
+}

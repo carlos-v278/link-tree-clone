@@ -3,15 +3,25 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+<div class="center-div">
+    <div class="containeur-form-register">
+        <h1>Inscription</h1>
+        <div class="section">
+        {{ form_start(registrationForm ) }}
+        <div class="firs-last">
+            {{ form_row(registrationForm.firstname, { 'row_attr': {'class': 'custom-register'} } ) }}
+            {{ form_row(registrationForm.lastname , { 'row_attr': {'class': 'custom-register'} }) }}
+        </div>
+            {{ form_row(registrationForm.email, { 'row_attr': {'class': 'custom-register'} }) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe', 'row_attr': {'class': 'custom-register'} 
+            }) }}
+            {{ form_row(registrationForm.imageFile, { 'row_attr': {'class': 'custom-register-img'} }) }}
+            {{ form_row(registrationForm.agreeTerms, { 'row_attr': {'class': 'custom-register-agree'} }) }}
+            
+            <button type="submit" class="btn-submit">Valider</button>
+            {{ form_end(registrationForm) }}
+    </div>
+    </div>
+</div>
 {% endblock %}

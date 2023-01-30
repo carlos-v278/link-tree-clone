@@ -12,51 +12,47 @@ class Template
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $baseline = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $youtube_url = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $baseline = 'baseline lorem';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_1_bg_color = null;
+    private ?string $youtube_url = '47Kk_uQq2jg';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_1_title_color = null;
+    private ?string $section_1_bg_color = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_1_baseline_color = null;
+    private ?string $section_1_title_color = '#383838';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section2_bg_color = null;
+    private ?string $section_1_baseline_color = '#383838';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_3_bg_color = null;
+    private ?string $section2_bg_color = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_3_bg_color_card = null;
+    private ?string $section_3_bg_color = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_3_color_txt_card = null;
+    private ?string $section_3_bg_color_card = '#FFFFFF';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_4_bg_color = null;
+    private ?string $section_3_color_txt_card = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_4_bg_color_btn = null;
+    private ?string $section_4_bg_color = '#14CF93';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_4_color_txt_btn = null;
+    private ?string $section_4_bg_color_btn = '#FFFFFF';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_5_bg_color = null;
+    private ?string $section_4_color_txt_btn = '#FFFFFF';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_5_icon_color = null;
+    private ?string $section_5_bg_color = '#FCFAF8';
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $section_5_icon_color = '#383838';
 
     #[ORM\OneToOne(inversedBy: 'template', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -71,17 +67,8 @@ class Template
         return $this->id;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
 
-        return $this;
-    }
 
     public function getBaseline(): ?string
     {

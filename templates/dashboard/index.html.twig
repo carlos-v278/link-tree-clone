@@ -1,37 +1,204 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_dashboard.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}DashBoard Client{% endblock %}
 
 {% block body %}
-<h2>Template</h2>
-<div class="promotion_container">
-    <div class="promotion">
-        <div class="promotion_name">{{ user.template.title }}</div>
-        <a href="{{ path('app_template_edit', { 'id': user.template.id }) }}">Mettre à jour le template</a>
+
+<div class="dashboard_container">
+    <div class="dashboard_side_bar">
+        <div class="sidebar_header">
+            <i  class=" fa-solid fa-gauge"></i>
+            <span>DashBoard</span>
+        </div>
+        <div class="sidebar_content">
+            <ul>
+                <li>
+                    <a href="#promotion_dashboard">
+                        <i class="fa-solid fa-tags"></i>
+                         <span>Promotions</span>
+                    </a>
+                </li>
+                <li>
+                     <a href="#ressource_dashboard">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Ressources</span>
+                     </a>
+                </li>
+                <li>
+                       <a href="#social_dashboard"><i class="fa-regular fa-thumbs-up"></i>
+                       <span>Réseaux</span>
+                       </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="dashboard_content">
+    <div class="imp_link">
+         <a class="go_back" href="{{ path('app_home') }}"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+        <a class="go_back" href="{{ path('app_logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i>  Déconnexion</a>
+    </div>
+       
+        <div class="dashboard_content_row">
+                <div class="row_header">
+                    <h2>Template</h2>
+                    <span class="line"></span>
+                </div>
+                <table class="table">
+                    <tr class="tr">
+                        <th class="thead thead1 ">Titre</th>
+                        <th class="thead">Baseline</th>
+                        <th class="thead">Lien all dev long</th>
+                        <th class="thead">Youtube</th>
+                        <th class="thead">Fond Section 1</th>
+                        <th class="thead">Couleur titre section 1</th>
+                    </tr>
+                    {% if user.template %}
+                        <tr >
+                            <td class="tbody tbody1">{{user.firstname}} {{user.lastname}}</td>
+                            <td class="tbody tbody1">{{ user.template.baseline ?: user.template.baseline }}</td>
+                            <td class="tbody tbody1"><a target="blank" href="https://127.0.0.1:8001/landing-page/{{ user.slug}}">https://127.0.0.1:8001/landing-page/{{ user.slug}}</a></td>
+                            <td class="tbody tbody1">{{ user.template.youtubeUrl}}</td>
+                            <td style="background:{{ user.template.section1BgColor }};color:white;" class="tbody color_td">{{ user.template.section1BgColor}}</td>
+                            <td style="background:{{ user.template.section1TitleColor }}; color:white;" class="tbody color_td">{{ user.template.section1TitleColor}}</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                {% if user.template %}
+                  <div class="content_row_footer">
+                  <span>Pour plus de modification  cliquer ici</span>
+                    <a  class="btn"  href="{{ path('app_template_edit', { 'id': user.template.id}) }}">
+                        <i class="custom_icon fa-solid fa-pen-to-square"></i>
+                    </a>
+                  </div>
+                  {% else %}
+                      <div class="content_row_footer">
+                        <span>Pour ajouter un template  cliquer ici</span>
+                            <a  class="btn"  href="{{ path('app_new_template') }}">
+                                 <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                {% endif %}
+
+        </div>
+        <div class="dashboard_content_row">
+
+                <div class="row_header">
+                    <h2 id="promotion_dashboard">Promotions</h2>
+                    <span class="line"></span>
+                </div>
+                <table class="table">
+                    <tr class="tr">
+                        <th></th>
+                        <th class="thead thead1 ">Nom</th>
+                        <th class="thead">Code</th>
+                        <th class="thead">Début</th>
+                        <th class="thead">Fin</th>
+                        <th class="thead">Couleur 1</th>
+                        <th class="thead">Couleur 2</th>
+                    </tr>
+                        {% for promotion in user.promotions %}
+                        <tr>
+                            <td class="tbody tbodyedit">
+                                <a  class='edit_link' href="{{ path('app_promotion_edit', { 'id': promotion.id}) }}">
+                                    <i class="custom_icon fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class='delete_link'  href="{{ path('app_promotion_delet', { 'id': promotion.id}) }}">
+                                    <i class="custom_icon fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                            <td class="tbody tbody1">{{ promotion.name }}</td>
+                            <td class="tbody">{{promotion.promotionalCode }}</td>
+                            <td class="tbody">{{promotion.dateStart|date("d/m/Y") }}</td>
+                            <td class="tbody">{{promotion.dateEnd|date("d/m/Y") }}</td>
+                            <td style="background:{{ promotion.bgColor }};" class="tbody color_td">{{ promotion.bgColor }}</td>
+                            <td  style="background:{{ promotion.colorTxt }};"  class="tbody color_td">{{ promotion.colorTxt }}</td>
+                        </tr>
+                        {% endfor %}
+
+                </table>
+                  <a  class="btn" href="{{ path('app_new_promo') }}">
+                    <i class="fa-solid fa-plus"></i>
+                  </a>
+        </div>
+          <div class="dashboard_content_row">
+                <div class="row_header">
+                    <h2 id="ressource_dashboard">Ressources</h2>
+                    <span class="line"></span>
+                </div>
+                <table class="table">
+                    <tr class="tr">
+                        <th></th>
+                        <th class="thead thead1 ">Nom</th>
+                        <th class="thead">Lien</th>
+                        <th class="thead">Image</th>
+
+                    </tr>
+                        {% for ressource in user.ressources %}
+                        <tr>
+                            <td class="tbody tbodyedit">
+                                <a  class='edit_link' href="{{ path('app_ressource_edit', { 'id': ressource.id}) }}">
+                                    <i class="custom_icon fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class='delete_link'   href="{{ path('app_ressource_delet', { 'id': ressource.id}) }}">
+                                    <i class="custom_icon fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                            <td class="tbody tbody1">{{ ressource.name }}</td>
+                            <td  class="tbody"><a href="{{ressource.url }}">{{ressource.url }}</a></td>
+                            <td  class="tbody">
+                                <div class="vich_image">
+                                    <img src="{{ asset('uploads/ressources/')}}{{ressource.urlImage }}" alt="">
+                                </div>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                </table>
+                  <a  class="btn" href="{{ path('app_new_ressource') }}">
+                    <i class="fa-solid fa-plus"></i>
+                  </a>
+        </div>
+         <div class="dashboard_content_row">
+                <div class="row_header">
+                    <h2 id="social_dashboard">Réseaux</h2>
+                    <span class="line"></span>
+                </div>
+                <table class="table">
+                    <tr class="tr">
+                        <th></th>
+                        <th class="thead thead1 ">Nom</th>
+                        <th class="thead">Lien</th>
+                        <th class="thead">font</th>
+
+                    </tr>
+                           {% for social in user.socials %}
+                        <tr>
+                            <td class="tbody tbodyedit">
+                                <a  class='edit_link' href="{{ path('app_social_edit', { 'id': social.id}) }}">
+                                    <i class="custom_icon fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class='delete_link' href="{{ path('app_social_delet', { 'id': social.id}) }}">
+                                    <i class="custom_icon fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                            <td class="tbody tbody1">{{ social.name }}</td>
+                            <td  class="tbody"><a href="{{social.socialUrl }}">{{social.socialUrl }}</a></td>
+                            <td  class="tbody"><a href="{{social.socialUrl }}">
+                                <i class="social_icon_td {{social.fontAwesomeIconName }}"></i>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                </table>
+                  <a  class="btn" href="{{ path('app_new_social') }}">
+                    <i class="fa-solid fa-plus"></i>
+                  </a>
+        </div>
     </div>
 </div>
 
-<h2>Pormotions</h2>
-<div class="promotion_container">
-    {% for promotion in user.promotions %}
-        <div class="promotion">
-            <div class="promotion_name">{{ promotion.name }}</div>
-              <a href="{{ path('app_promotion_edit', { 'id': promotion.id}) }}">Mettre à jour la {{promotion.name}}</a>
-        </div>
-    {% endfor %}
-    <a href="{{ path('app_new_promo') }}">Ajouter une nouvelle promotion</a>
-</div>
-
-<h2>Ressources</h2>
-<div class="ressource_container">
-    {% for ressource in user.ressources %}
-        <div class="ressource">
-            <div class="ressource_name">{{ ressource.name }}</div>
-            <a href="{{ path('app_ressource_edit', { 'id': ressource.id}) }}">Mettre à jour la {{ressource.name}}</a>
-        </div>
-    {% endfor %}
-     <a href="{{ path('app_new_ressource') }}">Ajouter une nouvelle ressource</a>
-</div>
 
 <h2>social</h2>
 <div class="social_container">
@@ -43,5 +210,16 @@
     {% endfor %}
          <a href="{{ path('app_new_social') }}">Ajouter une nouveau réseau</a>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
