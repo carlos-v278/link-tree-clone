@@ -3,9 +3,14 @@
 {% block title %}Nouveau Template{% endblock %}
 
 {% block body %}
+<div class="center-div-template">
+    <div class="containeur-form-new">
     <h1>Création  d'un nouveau template</h1>
 
     {{ include('dashboard/new/_form.html.twig') }}
-
+    <div class="back-div">
     <a href="{{ path('app_dashboard') }}">Revenir sur le Tableau de bord</a>
+</div>
+</div>
+</div>
 {% endblock %}

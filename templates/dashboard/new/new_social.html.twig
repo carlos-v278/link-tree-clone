@@ -3,9 +3,15 @@
 {% block title %}New Social{% endblock %}
 
 {% block body %}
+<div class="center-div">
+    <div class="containeur-form-new">
     <h1>Create new Social</h1>
 
     {{ include('dashboard/new/_form.html.twig') }}
-
+    <div class="back-div">
     <a href="{{ path('app_dashboard') }}">back to list</a>
+</div>
+</div>
+</div>
+
 {% endblock %}

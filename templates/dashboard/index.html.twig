@@ -98,7 +98,7 @@
                                 <a  class='edit_link' href="{{ path('app_promotion_edit', { 'id': promotion.id}) }}">
                                     <i class="custom_icon fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a class='delete_link'  href="">
+                                <a class='delete_link'  href="{{ path('app_promotion_delet', { 'id': promotion.id}) }}">
                                     <i class="custom_icon fa-solid fa-trash"></i>
                                 </a>
                             </td>
@@ -135,7 +135,7 @@
                                 <a  class='edit_link' href="{{ path('app_ressource_edit', { 'id': ressource.id}) }}">
                                     <i class="custom_icon fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a class='delete_link'  href="">
+                                <a class='delete_link'   href="{{ path('app_ressource_delet', { 'id': ressource.id}) }}">
                                     <i class="custom_icon fa-solid fa-trash"></i>
                                 </a>
                             </td>
@@ -174,7 +174,7 @@
                                 <a  class='edit_link' href="{{ path('app_social_edit', { 'id': social.id}) }}">
                                     <i class="custom_icon fa-solid fa-pen-to-square"></i>
                                 </a>
-                                <a class='delete_link'  href="">
+                                <a class='delete_link' href="{{ path('app_social_delet', { 'id': social.id}) }}">
                                     <i class="custom_icon fa-solid fa-trash"></i>
                                 </a>
                             </td>
