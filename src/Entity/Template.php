@@ -40,7 +40,7 @@ class Template
     private ?string $section_3_color_txt_card = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $section_4_bg_color = '#14CF93';
+    private ?string $section_4_bg_color = '#FCFAF8';
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $section_4_bg_color_btn = '#FFFFFF';

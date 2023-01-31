@@ -31,10 +31,10 @@ class Promotion
     private ?User $user = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $bg_color = null;
+    private ?string $bg_color = '#14CF93';
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $color_txt = null;
+    private ?string $color_txt = '#09d393';
 
 
 

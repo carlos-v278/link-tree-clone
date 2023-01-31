@@ -16,7 +16,8 @@
     <body class="LP_body">
 
         <main class="LP_mainContent">
-            <section class="LP_infoInflu" 
+            <section 
+                class="LP_infoInflu" 
                 style='background:{{user.template.section1BgColor}};'
             >
                 <div class="design_scroll">
@@ -76,7 +77,9 @@
                         </span>
                     </h2>
 
-                    <div id="ytplayer"></div>
+                 
+                    <div style="width:100%;max-width:800px;margin:0 auto;">
+                       <div id="ytplayer"></div>
                         <script>
                             // Load the IFrame Player API code asynchronously.
                             var tag = document.createElement('script');
@@ -89,12 +92,14 @@
                             var player;
                             function onYouTubePlayerAPIReady() {
                                 player = new YT.Player('ytplayer', {
-                                height: '360',
-                                width: '640',
+                                height: '500px',
+                                width: '100%',
                                 videoId: '{{user.template.youtubeUrl }}'
                                 });
                             }
                         </script>
+                    </div>
+                    
                 </section>
             {% endif %}
             {% if user.promotions|length > 0  %}
